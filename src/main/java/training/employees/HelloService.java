@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-@Service
+//@Service
 public class HelloService {
 
     public String sayHello() {
