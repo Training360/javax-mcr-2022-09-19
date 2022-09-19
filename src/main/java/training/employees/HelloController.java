@@ -32,6 +32,6 @@ public class HelloController {
     public String sayHello() {
 //        HelloService helloService = new HelloService(); // TILOS!
         // Delegál
-        return helloService.sayHello();
+        return helloService.sayHello().toUpperCase();
     }
 }
