@@ -7,8 +7,12 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfig {
 
     @Bean
+    public TimeMachine timeMachine() {
+        return new TimeMachine();
+    }
+    @Bean
     public HelloService helloService() {
-        return new HelloService();
+        return new HelloService(timeMachine());
     }
 
 }
