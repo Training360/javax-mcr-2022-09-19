@@ -1,8 +1,11 @@
 package training.employees;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,8 +30,13 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public EmployeeDetailsDto createEmployee(@RequestBody CreateEmployeeCommand command) {
-        return service.createEmployee(command);
+//    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<EmployeeDetailsDto> createEmployee(@RequestBody CreateEmployeeCommand command,
+                                                             UriComponentsBuilder uri) {
+        var employee = service.createEmployee(command);
+        return ResponseEntity
+                .created(uri.path("/api/employees/{id}").buildAndExpand(employee.getId()).toUri())
+                .body(employee);
     }
 
     @PutMapping("{id}")
