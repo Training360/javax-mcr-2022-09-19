@@ -1,5 +1,6 @@
 package training.employees;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ public class EmployeeController {
     }
 
     @PostMapping
+    @Operation(summary = "Create a new employee", description = "Create a new employee with name and year of birth")
 //    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<EmployeeDetailsDto> createEmployee(@RequestBody CreateEmployeeCommand command,
                                                              UriComponentsBuilder uri) {
