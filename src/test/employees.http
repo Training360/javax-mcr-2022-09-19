@@ -1,0 +1,14 @@
+### Lekérdezi az alkalmazottakat
+GET http://localhost:8080/api/employees
+
+### Lekérdez egy alkalmazottat
+GET http://localhost:8080/api/employees/1
+
+### Alkalmazott létrehozása
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+    "name": "Jack Doe",
+    "yearOfBirth": 1990
+}

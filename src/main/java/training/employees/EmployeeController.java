@@ -25,4 +25,9 @@ public class EmployeeController {
     public EmployeeDetailsDto findEmployeeById(@PathVariable("id") long id) {
         return service.findEmployeeById(id);
     }
+
+    @PostMapping
+    public EmployeeDetailsDto createEmployee(@RequestBody CreateEmployeeCommand command) {
+        return service.createEmployee(command);
+    }
 }

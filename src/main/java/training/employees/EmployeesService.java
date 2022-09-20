@@ -27,4 +27,10 @@ public class EmployeesService {
 
         return employeeMapper.toDto(repository.findById(id));
     }
+
+    public EmployeeDetailsDto createEmployee(CreateEmployeeCommand command) {
+        var employee = employeeMapper.toEntity(command);
+        repository.save(employee);
+        return employeeMapper.toDto(employee);
+    }
 }
