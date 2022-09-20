@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -16,8 +17,8 @@ public class EmployeeController {
     @GetMapping
     // @ResponseBody - nem kell kitenni, mert a @RestController minden metódusra
     // automatikusan ráteszi
-    public List<EmployeeDto> listEmployees() {
-        return service.listEmployees();
+    public List<EmployeeDto> listEmployees(@RequestParam("prefix") Optional<String> prefix) {
+        return service.listEmployees(prefix);
     }
 
     @GetMapping("{id}")

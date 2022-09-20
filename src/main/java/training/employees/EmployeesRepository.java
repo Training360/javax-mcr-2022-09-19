@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class EmployeesRepository {
@@ -16,8 +17,10 @@ public class EmployeesRepository {
                     )
     );
 
-    public List<Employee> findAll() {
-        return Collections.unmodifiableList(employees);
+    public List<Employee> findAll(Optional<String> prefix) {
+        return employees.stream().filter(
+                e -> prefix.isEmpty() || e.getName().toLowerCase().startsWith(prefix.get().toLowerCase())
+        ).toList();
     }
 
     public Employee findById(long id) {
