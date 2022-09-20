@@ -43,4 +43,8 @@ public class EmployeesRepository {
         employee.setYearOfBirth(yearOfBirth);
         return employee;
     }
+
+    public void delete(long id) {
+        employees.removeIf(e -> e.getId() == id);
+    }
 }

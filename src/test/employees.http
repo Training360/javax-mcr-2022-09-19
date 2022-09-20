@@ -20,3 +20,6 @@ Content-Type: application/json
 {
    "yearOfBirth": 1991 
 }
+
+### Alkalmazott törlése
+DELETE http://localhost:8080/api/employees/1

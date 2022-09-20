@@ -38,4 +38,8 @@ public class EmployeesService {
         var employee = repository.update(id, command.getYearOfBirth());
         return employeeMapper.toDto(employee);
     }
+
+    public void deleteEmployee(long id) {
+        repository.delete(id);
+    }
 }

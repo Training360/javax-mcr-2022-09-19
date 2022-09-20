@@ -36,4 +36,10 @@ public class EmployeeController {
                                              @RequestBody UpdateEmployeeCommand command) {
         return service.updateEmployee(id, command);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteEmployee(@PathVariable("id") long id) {
+        service.deleteEmployee(id);
+    }
+
 }
