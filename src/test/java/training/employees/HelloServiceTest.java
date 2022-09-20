@@ -41,7 +41,7 @@ class HelloServiceTest {
         var message = service.sayHello();
 
         // then: assert
-        assertEquals("Hello from service! 2022-01-01T10:00", message);
+        assertEquals("Hello from devtools service! 2022-01-01T10:00", message);
 
     }
 

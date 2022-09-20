@@ -27,6 +27,6 @@ class HelloControllerIT {
         var message = helloController.sayHello();
 //        assertTrue(message.startsWith("HELLO FROM SERVICE!"),
 //                "Doesn't start with the given message");
-        assertEquals("HELLO FROM SERVICE! 2022-01-01T10:00", message);
+        assertEquals("HELLO FROM DEVTOOLS SERVICE! 2022-01-01T10:00", message);
     }
 }
