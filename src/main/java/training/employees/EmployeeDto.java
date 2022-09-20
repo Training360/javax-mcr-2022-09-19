@@ -5,11 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Employee {
+public class EmployeeDto {
 
     private Long id;
 
     private String name;
-
-    private int yearOfBirth;
 }
