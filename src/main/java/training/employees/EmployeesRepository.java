@@ -37,4 +37,10 @@ public class EmployeesRepository {
         employee.setId(idGenerator.incrementAndGet());
         employees.add(employee);
     }
+
+    public Employee update(long id, int yearOfBirth) {
+        var employee = findById(id);
+        employee.setYearOfBirth(yearOfBirth);
+        return employee;
+    }
 }

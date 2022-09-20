@@ -30,4 +30,10 @@ public class EmployeeController {
     public EmployeeDetailsDto createEmployee(@RequestBody CreateEmployeeCommand command) {
         return service.createEmployee(command);
     }
+
+    @PutMapping("{id}")
+    public EmployeeDetailsDto updateEmployee(@PathVariable("id") long id,
+                                             @RequestBody UpdateEmployeeCommand command) {
+        return service.updateEmployee(id, command);
+    }
 }

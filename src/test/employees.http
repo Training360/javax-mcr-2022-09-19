@@ -2,7 +2,7 @@
 GET http://localhost:8080/api/employees
 
 ### Lekérdez egy alkalmazottat
-GET http://localhost:8080/api/employees/1
+GET http://localhost:8080/api/employees/2
 
 ### Alkalmazott létrehozása
 POST http://localhost:8080/api/employees
@@ -11,4 +11,12 @@ Content-Type: application/json
 {
     "name": "Jack Doe",
     "yearOfBirth": 1990
+}
+
+### Alkalmazott módosítása
+PUT http://localhost:8080/api/employees/2
+Content-Type: application/json
+
+{
+   "yearOfBirth": 1991 
 }

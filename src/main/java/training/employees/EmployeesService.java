@@ -33,4 +33,9 @@ public class EmployeesService {
         repository.save(employee);
         return employeeMapper.toDto(employee);
     }
+
+    public EmployeeDetailsDto updateEmployee(long id, UpdateEmployeeCommand command) {
+        var employee = repository.update(id, command.getYearOfBirth());
+        return employeeMapper.toDto(employee);
+    }
 }
