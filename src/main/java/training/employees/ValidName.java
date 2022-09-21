@@ -16,4 +16,6 @@ public @interface ValidName {
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 
+    int minUppers() default 1;
+
 }

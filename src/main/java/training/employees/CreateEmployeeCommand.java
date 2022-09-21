@@ -15,7 +15,7 @@ public class CreateEmployeeCommand {
     @Schema(description = "The name of the employee", example = "Jack Doe")
     @NotBlank
     @Size(min=3, message = "should be longer than 3 character")
-    @ValidName
+    @ValidName(minUppers = 2)
     private String name;
 
     @Schema(description = "The year of birth of employee", example = "1970")
