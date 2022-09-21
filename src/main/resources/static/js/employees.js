@@ -16,7 +16,7 @@ window.onload = function() {
                 body: JSON.stringify(data)})
             .then(response => handleResponse(response))
             .then(data => handleCreated(data))
-            .catch(data => handleError(data));
+            .catch(error => handleError(error));
     }
 }
 
@@ -32,6 +32,7 @@ function handleResponse(response) {
 function handleError(data) {
     console.log("Error!")
     console.log(data);
+    document.querySelector("#message").innerHTML = "Error creating employee";
 }
 
 function fetchEmployees() {
@@ -51,5 +52,6 @@ function printEmployees(employees) {
 
 function handleCreated(data) {
     console.log(data);
+    document.querySelector("#message").innerHTML = `Employee has created with id ${data.id}`;
     fetchEmployees();
 }
