@@ -1,6 +1,7 @@
 package training.employees.employees.repository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
@@ -30,8 +31,13 @@ public class EmployeesRepository {
     }
 
     public Employee findById(long id) {
-        return jdbcTemplate.queryForObject("select id, emp_name, year_of_birth from employees where id = ?",
-                EmployeesRepository::mapEmployee, id);
+        try {
+            return jdbcTemplate.queryForObject("select id, emp_name, year_of_birth from employees where id = ?",
+                    EmployeesRepository::mapEmployee, id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new EmployeeNotFoundException("Employee not found with id: " + id);
+        }
     }
 
     public void save(Employee employee) {
