@@ -14,9 +14,24 @@ window.onload = function() {
                 {method: 'POST', 
                 headers: {"Content-Type": "application/json"},  
                 body: JSON.stringify(data)})
-            .then(response => response.json())
-            .then(data => handleCreated(data));
+            .then(response => handleResponse(response))
+            .then(data => handleCreated(data))
+            .catch(data => handleError(data));
     }
+}
+
+function handleResponse(response) {
+    console.log(response);
+    console.log(response.ok);
+    if (response.ok) {
+        return response.json();
+    }
+    throw Error(response.json());
+}
+
+function handleError(data) {
+    console.log("Error!")
+    console.log(data);
 }
 
 function fetchEmployees() {
