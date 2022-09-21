@@ -1,6 +1,7 @@
-package training.employees;
+package training.employees.employees.repository;
 
 import org.springframework.stereotype.Repository;
+import training.employees.employees.entity.Employee;
 
 import java.util.ArrayList;
 import java.util.Collections;

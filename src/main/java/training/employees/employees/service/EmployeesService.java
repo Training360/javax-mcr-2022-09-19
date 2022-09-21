@@ -1,7 +1,12 @@
-package training.employees;
+package training.employees.employees.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import training.employees.employees.dto.CreateEmployeeCommand;
+import training.employees.employees.dto.EmployeeDetailsDto;
+import training.employees.employees.dto.EmployeeDto;
+import training.employees.employees.dto.UpdateEmployeeCommand;
+import training.employees.employees.repository.EmployeesRepository;
 
 import java.util.List;
 import java.util.Optional;

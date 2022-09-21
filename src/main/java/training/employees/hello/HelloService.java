@@ -1,9 +1,6 @@
-package training.employees;
+package training.employees.hello;
 
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 //@Service
 @AllArgsConstructor

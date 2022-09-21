@@ -1,12 +1,16 @@
-package training.employees;
+package training.employees.employees.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import training.employees.employees.dto.CreateEmployeeCommand;
+import training.employees.employees.dto.EmployeeDetailsDto;
+import training.employees.employees.dto.EmployeeDto;
+import training.employees.employees.dto.UpdateEmployeeCommand;
+import training.employees.employees.service.EmployeesService;
 
 import javax.validation.Valid;
 import java.util.List;

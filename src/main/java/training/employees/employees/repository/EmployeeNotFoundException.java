@@ -1,4 +1,4 @@
-package training.employees;
+package training.employees.employees.repository;
 
 public class EmployeeNotFoundException extends RuntimeException {
 

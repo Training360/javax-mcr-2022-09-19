@@ -1,4 +1,4 @@
-package training.employees;
+package training.employees.hello;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;

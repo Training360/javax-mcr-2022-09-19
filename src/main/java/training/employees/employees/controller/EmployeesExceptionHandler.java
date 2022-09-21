@@ -1,4 +1,4 @@
-package training.employees;
+package training.employees.employees.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,6 +7,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.zalando.problem.Problem;
 import org.zalando.problem.Status;
 import org.zalando.problem.spring.web.advice.ProblemHandling;
+import training.employees.employees.repository.EmployeeNotFoundException;
 
 import java.net.URI;
 import java.util.UUID;

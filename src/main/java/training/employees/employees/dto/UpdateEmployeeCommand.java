@@ -1,4 +1,4 @@
-package training.employees;
+package training.employees.employees.dto;
 
 import lombok.Data;
 
