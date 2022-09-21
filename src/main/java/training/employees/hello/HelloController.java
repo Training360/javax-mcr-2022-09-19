@@ -2,6 +2,7 @@ package training.employees.hello;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,5 +34,12 @@ public class HelloController {
 //        HelloService helloService = new HelloService(); // TILOS!
         // Delegál
         return helloService.sayHello().toUpperCase();
+    }
+
+
+    @RequestMapping(value = "/favourite-color", method = RequestMethod.GET)
+    @ResponseBody
+    public String getFavouriteColor() {
+        return helloService.getFavouriteColor();
     }
 }
