@@ -21,18 +21,24 @@ window.onload = function() {
 }
 
 function handleResponse(response) {
-    console.log(response);
-    console.log(response.ok);
     if (response.ok) {
         return response.json();
     }
-    throw Error(response.json());
+    const error = Error();
+    Object.assign(error, {response: response});
+    throw error;
 }
 
-function handleError(data) {
-    console.log("Error!")
-    console.log(data);
-    document.querySelector("#message").innerHTML = "Error creating employee";
+function handleError(error) {
+    error.response.json().then(data => printError(data));
+}
+
+function printError(data) {
+    const message = document.querySelector("#message");
+    message.innerHTML = ""
+    for (const violation of data.violations) {
+        message.innerHTML += `<p>${violation.message}</p>`;
+    }
 }
 
 function fetchEmployees() {
