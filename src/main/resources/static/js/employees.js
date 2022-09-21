@@ -14,9 +14,9 @@ window.onload = function() {
                 {method: 'POST', 
                 headers: {"Content-Type": "application/json"},  
                 body: JSON.stringify(data)})
-            .then(response => handleResponse(response))
-            .then(data => handleCreated(data))
-            .catch(error => handleError(error));
+            .then(handleResponse)
+            .then(handleCreated)
+            .catch(handleError);
     }
 }
 
@@ -26,7 +26,8 @@ function handleResponse(response) {
     }
     const error = Error();
     Object.assign(error, {response: response});
-    throw error;
+    throw error;   
+    // throw new ValidationError("Invalid employee", response);
 }
 
 function handleError(error) {
@@ -61,3 +62,12 @@ function handleCreated(data) {
     document.querySelector("#message").innerHTML = `Employee has created with id ${data.id}`;
     fetchEmployees();
 }
+
+// class ValidationError extends Error {
+
+//     constructor(message, response) {
+//         super(message);
+//         this.name = "ValidationError";
+//         this.response = response;
+//     }
+// }
