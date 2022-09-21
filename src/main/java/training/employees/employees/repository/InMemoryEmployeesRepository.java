@@ -1,36 +1,30 @@
 package training.employees.employees.repository;
 
-import lombok.AllArgsConstructor;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import training.employees.employees.entity.Employee;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
-@Repository
-@AllArgsConstructor
-public class EmployeesRepository {
+// @Repository
+public class InMemoryEmployeesRepository {
 
-    private JdbcTemplate jdbcTemplate;
+    private AtomicLong idGenerator = new AtomicLong(0);
+
+    private List<Employee> employees = Collections.synchronizedList(new ArrayList<>(
+            List.of(
+                    new Employee(idGenerator.incrementAndGet(), "John Doe", 1970),
+                    new Employee(idGenerator.incrementAndGet(), "Jane Doe", 1980)
+                    ))
+    );
 
     public List<Employee> findAll(Optional<String> prefix) {
-        if (prefix.isEmpty()) {
-            return jdbcTemplate.query("select id, emp_name from employees",
-                    EmployeesRepository::mapEmployee);
-        }
-        else {
-            return jdbcTemplate.query("select id, emp_name from employees where emp_name like :prefix",
-                    EmployeesRepository::mapEmployee, prefix.get() + "%");
-        }
-    }
-
-    private static Employee mapEmployee(ResultSet rs, int i) throws SQLException {
-        return new Employee(rs.getLong("id"),
-                rs.getString("emp_name"),
-                rs.getInt("year_of_birth"));
+        return employees.stream().filter(
+                e -> prefix.isEmpty() || e.getName().toLowerCase().startsWith(prefix.get().toLowerCase())
+        ).toList();
     }
 
     public Employee findById(long id) {
