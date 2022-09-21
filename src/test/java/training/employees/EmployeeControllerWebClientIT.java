@@ -31,7 +31,7 @@ class EmployeeControllerWebClientIT {
         var result = webClient
                 .post()
                 .uri("/api/employees")
-                .bodyValue(new CreateEmployeeCommand("Amber Doe", 1970))
+                .bodyValue(new CreateEmployeeCommand("Amber Doe", 1970, 0))
                 .exchange()
                 .expectStatus().isCreated()
                 .expectBody(EmployeeDetailsDto.class).value(e -> assertEquals("Amber Doe", e.getName()))
@@ -57,6 +57,16 @@ class EmployeeControllerWebClientIT {
                 .exchange()
                 .expectBody(EmployeeDetailsDto.class)
                 .value(e -> assertEquals("Amber Doe", e.getName()));
+    }
+
+    @Test
+    void testCreateInvalidEmployee() {
+        webClient
+                .post()
+                .uri("/api/employees")
+                .bodyValue(new CreateEmployeeCommand("John Doe", 2001, 0))
+                .exchange()
+                .expectStatus().isBadRequest();
     }
 
     @Test
