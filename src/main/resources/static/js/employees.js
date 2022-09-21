@@ -1,9 +1,7 @@
 window.onload = function() {
     console.log("Starting employees frontend");
-    fetch("http://localhost:8080/api/employees")
-        .then(response => response.json())
-        .then(employees => printEmployees(employees));
 
+    fetchEmployees();
     const button = document.querySelector("button");
     button.onclick =  function() {
         console.log("Clicked")
@@ -17,14 +15,26 @@ window.onload = function() {
                 headers: {"Content-Type": "application/json"},  
                 body: JSON.stringify(data)})
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => handleCreated(data));
     }
+}
+
+function fetchEmployees() {
+    fetch("http://localhost:8080/api/employees")
+        .then(response => response.json())
+        .then(employees => printEmployees(employees));
 }
 
 function printEmployees(employees) {
     tbody = document.querySelector("tbody");
+    tbody.innerHTML = "";
     for (const employee of employees) {
         row = `<tr><td>${employee.id}</td><td>${employee.name}</td></tr>`;
         tbody.innerHTML += row;
     }
+}
+
+function handleCreated(data) {
+    console.log(data);
+    fetchEmployees();
 }
