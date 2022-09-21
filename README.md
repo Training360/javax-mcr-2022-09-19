@@ -16,3 +16,7 @@ pm.test("The name is Jack Doe", function () {
     pm.expect(jsonData.name).to.eql("Jack Doe");
 });
 ```
+
+```shell
+docker run -d -p 3306:3306 -e MARIADB_DATABASE=employees -e MARIADB_USER=employees -e MARIADB_PASSWORD=employees -e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes --name my-mariadb mariadb 
+```
