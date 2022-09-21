@@ -23,8 +23,7 @@ public class EmployeesRepository {
         if (prefix.isEmpty()) {
             return jdbcTemplate.query("select id, emp_name, year_of_birth from employees",
                     EmployeesRepository::mapEmployee);
-        }
-        else {
+        } else {
             return jdbcTemplate.query("select id, emp_name, year_of_birth from employees where emp_name like ?",
                     EmployeesRepository::mapEmployee, prefix.get() + "%");
         }
@@ -34,8 +33,7 @@ public class EmployeesRepository {
         try {
             return jdbcTemplate.queryForObject("select id, emp_name, year_of_birth from employees where id = ?",
                     EmployeesRepository::mapEmployee, id);
-        }
-        catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             throw new EmployeeNotFoundException("Employee not found with id: " + id);
         }
     }
