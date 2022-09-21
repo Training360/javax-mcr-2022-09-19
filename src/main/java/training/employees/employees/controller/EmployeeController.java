@@ -2,6 +2,7 @@ package training.employees.employees.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/employees")
 @AllArgsConstructor
+@Slf4j
 public class EmployeeController {
 
     private EmployeesService service;
@@ -27,6 +29,8 @@ public class EmployeeController {
     // @ResponseBody - nem kell kitenni, mert a @RestController minden metódusra
     // automatikusan ráteszi
     public List<EmployeeDto> listEmployees(@RequestParam("prefix") Optional<String> prefix) {
+        log.info("List employees");
+        log.debug("List employees with prefix {}", prefix);
         return service.listEmployees(prefix);
     }
 
