@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ public class EmployeeController {
     @PostMapping
     @Operation(summary = "Create a new employee", description = "Create a new employee with name and year of birth")
 //    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<EmployeeDetailsDto> createEmployee(@RequestBody CreateEmployeeCommand command,
+    public ResponseEntity<EmployeeDetailsDto> createEmployee(@Valid @RequestBody CreateEmployeeCommand command,
                                                              UriComponentsBuilder uri) {
         var employee = service.createEmployee(command);
         return ResponseEntity

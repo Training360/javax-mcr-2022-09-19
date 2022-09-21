@@ -13,6 +13,15 @@ Content-Type: application/json
     "yearOfBirth": 1990
 }
 
+### Validációs szabály megsértése
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+    "name": "J",
+    "yearOfBirth": 1322
+}
+
 ### Alkalmazott módosítása
 PUT http://localhost:8080/api/employees/2
 Content-Type: application/json
