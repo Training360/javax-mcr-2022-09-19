@@ -15,6 +15,13 @@ public class LoggerAspect {
     @Around("execution(* training.employees.employees.service.EmployeesService.*(..))")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("Call method: {}", joinPoint.getSignature().getName());
-        return joinPoint.proceed();
+        var start = System.currentTimeMillis();
+        try {
+            return joinPoint.proceed();
+        }
+        finally {
+            var end = System.currentTimeMillis();
+            log.info("Time of method: {} ms", end - start);
+        }
     }
 }
