@@ -59,10 +59,14 @@ public class EmployeesService {
     @Transactional
     public AddressDto createAddress(long employeeId, CreateAddressCommand command) {
         var address = employeeMapper.toEntity(command);
+
+        var employee = repository.getReferenceById(employeeId);
+        address.setEmployee(employee);
+
         addressesRepository.save(address);
-        var employee = repository.findById(employeeId)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + employeeId));
-        employee.addAddress(address);
+//        var employee = repository.findById(employeeId)
+//                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + employeeId));
+//        employee.addAddress(address);
         return employeeMapper.toDto(address);
     }
 
