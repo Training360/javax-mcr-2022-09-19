@@ -1,6 +1,7 @@
 package training.employees.employees.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training.employees.employees.dto.*;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class EmployeesService {
 
     private EmployeesRepository repository;
@@ -70,9 +72,20 @@ public class EmployeesService {
         return employeeMapper.toDto(address);
     }
     public List<AddressDto> listAddresses(long employeeId) {
-        var employee = repository.findById(employeeId)
+        log.info("Load employee");
+        var employee = repository.findEmployeeWithAddresses(employeeId)
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + employeeId));
+        log.info("Load addresses");
         return employeeMapper.toAddressDto(employee.getAddresses());
+    }
+
+    public void listEmployeesWithAddresses() {
+        var employees = repository.findEmployeesWithAddresses();
+        for (var employee: employees) {
+            for (var address: employee.getAddresses()) {
+                log.info("address: {}", address);
+            }
+        }
     }
 
 }

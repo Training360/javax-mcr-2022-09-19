@@ -1,8 +1,6 @@
 package training.employees.employees.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "addresses")
+
 public class Address {
 
     @Id
@@ -25,6 +24,8 @@ public class Address {
 
     // Owner side - ez az oldal felelős a kapcsolatért
     // Itt van az FK
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToOne
     private Employee employee;
 }

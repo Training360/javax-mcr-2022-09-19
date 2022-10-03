@@ -69,4 +69,14 @@ public class EmployeeController {
                 .body(address);
     }
 
+    @GetMapping("{employeeId}/addresses")
+    public List<AddressDto> listAddresses(@PathVariable("employeeId") long employeeId) {
+        return service.listAddresses(employeeId);
+    }
+
+    @GetMapping("/all")
+    public void listEmployeesWithAddresses() {
+        service.listEmployeesWithAddresses();
+    }
+
 }
