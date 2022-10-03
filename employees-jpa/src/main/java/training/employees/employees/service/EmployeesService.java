@@ -2,10 +2,12 @@ package training.employees.employees.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import training.employees.employees.dto.CreateEmployeeCommand;
 import training.employees.employees.dto.EmployeeDetailsDto;
 import training.employees.employees.dto.EmployeeDto;
 import training.employees.employees.dto.UpdateEmployeeCommand;
+import training.employees.employees.repository.EmployeeNotFoundException;
 import training.employees.employees.repository.EmployeesRepository;
 
 import java.util.List;
@@ -20,17 +22,14 @@ public class EmployeesService {
     private EmployeeMapper employeeMapper;
 
     public List<EmployeeDto> listEmployees(Optional<String> prefix) {
-//        return repository.findAll().stream()
-//                .map(e -> new EmployeeDto(e.getId(), e.getName()))
-//                .toList();
-        return employeeMapper.toDto(repository.findAll(prefix));
+        // TODO prefix paraméter használata
+        return employeeMapper.toDto(repository.findAll());
     }
 
     public EmployeeDetailsDto findEmployeeById(long id) {
-//        var employee = repository.findById(id);
-//        return new EmployeeDetailsDto(employee.getId(), employee.getName(), employee.getYearOfBirth());
-
-        return employeeMapper.toDto(repository.findById(id));
+        return employeeMapper.toDto(repository
+                .findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id)));
     }
 
     public EmployeeDetailsDto createEmployee(CreateEmployeeCommand command) {
@@ -39,12 +38,15 @@ public class EmployeesService {
         return employeeMapper.toDto(employee);
     }
 
+    @Transactional
     public EmployeeDetailsDto updateEmployee(long id, UpdateEmployeeCommand command) {
-        var employee = repository.update(id, command.getYearOfBirth());
+        var employee = repository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id));
+        employee.setYearOfBirth(command.getYearOfBirth());
         return employeeMapper.toDto(employee);
     }
 
     public void deleteEmployee(long id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 }
