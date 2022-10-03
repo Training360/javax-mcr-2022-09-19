@@ -2,9 +2,8 @@ package training.employees.employees.service;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
-import training.employees.employees.dto.CreateEmployeeCommand;
-import training.employees.employees.dto.EmployeeDetailsDto;
-import training.employees.employees.dto.EmployeeDto;
+import training.employees.employees.dto.*;
+import training.employees.employees.entity.Address;
 import training.employees.employees.entity.Employee;
 
 import java.util.List;
@@ -17,4 +16,8 @@ public interface EmployeeMapper {
     EmployeeDetailsDto toDto(Employee employee);
 
     Employee toEntity(CreateEmployeeCommand command);
+
+    Address toEntity(CreateAddressCommand command);
+
+    AddressDto toDto(Address address);
 }

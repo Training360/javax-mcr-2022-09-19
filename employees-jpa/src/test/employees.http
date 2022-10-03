@@ -1,6 +1,9 @@
 ### Lekérdezi az alkalmazottakat
 GET http://localhost:8080/api/employees
 
+### Lekérdezi az alkalmazottakat 
+GET http://localhost:8080/api/employees?prefix=s
+
 ### Lekérdez egy alkalmazottat
 GET http://localhost:8080/api/employees/2
 
@@ -9,7 +12,7 @@ POST http://localhost:8080/api/employees
 Content-Type: application/json
 
 {
-    "name": "Jack Doe",
+    "name": "Stephen Doe",
     "yearOfBirth": 1990
 }
 
@@ -32,3 +35,13 @@ Content-Type: application/json
 
 ### Alkalmazott törlése
 DELETE http://localhost:8080/api/employees/1
+
+### Cím létrehozása
+POST http://localhost:8080/api/employees/2/addresses
+Content-Type: application/json
+
+{
+    "zip": "1111",
+    "city": "Budapest",
+    "line1": "Fő út 30."
+}

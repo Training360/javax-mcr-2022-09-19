@@ -3,10 +3,8 @@ package training.employees.employees.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import training.employees.employees.dto.CreateEmployeeCommand;
-import training.employees.employees.dto.EmployeeDetailsDto;
-import training.employees.employees.dto.EmployeeDto;
-import training.employees.employees.dto.UpdateEmployeeCommand;
+import training.employees.employees.dto.*;
+import training.employees.employees.repository.AddressesRepository;
 import training.employees.employees.repository.EmployeeNotFoundException;
 import training.employees.employees.repository.EmployeesRepository;
 
@@ -18,6 +16,8 @@ import java.util.Optional;
 public class EmployeesService {
 
     private EmployeesRepository repository;
+
+    private AddressesRepository addressesRepository;
 
     private EmployeeMapper employeeMapper;
 
@@ -55,4 +55,15 @@ public class EmployeesService {
     public void deleteEmployee(long id) {
         repository.deleteById(id);
     }
+
+    @Transactional
+    public AddressDto createAddress(long employeeId, CreateAddressCommand command) {
+        var address = employeeMapper.toEntity(command);
+        addressesRepository.save(address);
+        var employee = repository.findById(employeeId)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + employeeId));
+        employee.addAddress(address);
+        return employeeMapper.toDto(address);
+    }
+
 }
