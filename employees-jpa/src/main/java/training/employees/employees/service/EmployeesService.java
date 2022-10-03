@@ -23,7 +23,12 @@ public class EmployeesService {
 
     public List<EmployeeDto> listEmployees(Optional<String> prefix) {
         // TODO prefix paraméter használata
-        return employeeMapper.toDto(repository.findAll());
+        if (prefix.isEmpty()) {
+            return employeeMapper.toDto(repository.findAll());
+        }
+        else {
+            return employeeMapper.toDto(repository.findEmployeesByPrefix(prefix.get().toLowerCase() + "%"));
+        }
     }
 
     public EmployeeDetailsDto findEmployeeById(long id) {
