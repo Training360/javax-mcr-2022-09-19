@@ -22,7 +22,6 @@ public class EmployeesService {
     private EmployeeMapper employeeMapper;
 
     public List<EmployeeDto> listEmployees(Optional<String> prefix) {
-        // TODO prefix paraméter használata
         if (prefix.isEmpty()) {
             return employeeMapper.toDto(repository.findAll());
         }
