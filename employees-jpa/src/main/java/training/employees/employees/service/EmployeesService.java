@@ -73,10 +73,14 @@ public class EmployeesService {
     }
     public List<AddressDto> listAddresses(long employeeId) {
         log.info("Load employee");
-        var employee = repository.findEmployeeWithAddresses(employeeId)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + employeeId));
-        log.info("Load addresses");
-        return employeeMapper.toAddressDto(employee.getAddresses());
+//        var employee = repository.findEmployeeWithAddresses(employeeId)
+//                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + employeeId));
+//        log.info("Load addresses");
+//        var addresses = employee.getAddresses();
+
+        var addresses = addressesRepository.findAddressByEmployeeId(employeeId);
+
+        return employeeMapper.toAddressDto(addresses);
     }
 
     public void listEmployeesWithAddresses() {

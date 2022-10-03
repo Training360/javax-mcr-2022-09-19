@@ -45,3 +45,11 @@ Content-Type: application/json
     "city": "Budapest",
     "line1": "Fő út 30."
 }
+
+### Címek lekérdezése
+
+GET  http://localhost:8080/api/employees/2/addresses
+
+### Minden
+
+GET http://localhost:8080/api/employees/all

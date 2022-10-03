@@ -26,6 +26,6 @@ public class Address {
     // Itt van az FK
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Employee employee;
 }
