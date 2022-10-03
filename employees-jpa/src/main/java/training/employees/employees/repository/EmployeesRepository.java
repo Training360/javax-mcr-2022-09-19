@@ -9,6 +9,6 @@ import java.util.List;
 public interface EmployeesRepository extends JpaRepository<Employee, Long> {
 
     // JPQL
-    @Query("select e from Employee e where LOWER(e.name) like :prefix")
-    List<Employee> findEmployeesByPrefix(String prefix);
+//    @Query("select e from Employee e where LOWER(e.name) like :prefix")
+    List<Employee> findEmployeesByNameLike(String prefix);
 }
