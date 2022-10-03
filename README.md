@@ -1,5 +1,13 @@
 # Spring Boot oktatás
 
+Virtuális gépeken Docker indításának előfeltétele:
+
+```shell
+net localgroup docker-users %USERDOMAIN%\%USERNAME% /add
+```
+
+Szükség van egy kijelentkezésre, majd Docker Desktop elindítása.
+
 ```shell
 docker build -t employees .
 docker run -d -p 8081:8080 --name my-employees employees
