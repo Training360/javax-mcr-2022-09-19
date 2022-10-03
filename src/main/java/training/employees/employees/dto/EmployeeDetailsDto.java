@@ -3,6 +3,8 @@ package training.employees.employees.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 public class EmployeeDetailsDto {
@@ -12,4 +14,6 @@ public class EmployeeDetailsDto {
     private String name;
 
     private int yearOfBirth;
+
+    private LocalDateTime created;
 }
