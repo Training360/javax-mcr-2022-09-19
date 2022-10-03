@@ -20,4 +20,6 @@ public interface EmployeeMapper {
     Address toEntity(CreateAddressCommand command);
 
     AddressDto toDto(Address address);
+
+    List<AddressDto> toAddressDto(List<Address> address);
 }
