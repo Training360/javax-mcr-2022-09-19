@@ -11,6 +11,7 @@ import training.employees.employees.dto.*;
 import training.employees.employees.service.EmployeesService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +26,12 @@ public class EmployeeController {
     @GetMapping
     // @ResponseBody - nem kell kitenni, mert a @RestController minden metódusra
     // automatikusan ráteszi
-    public List<EmployeeDto> listEmployees(@RequestParam("prefix") Optional<String> prefix) {
+    public List<EmployeeDto> listEmployees(@RequestParam("prefix") Optional<String> prefix,
+            Principal principal) {
         log.info("List employees");
         log.debug("List employees with prefix {}", prefix);
+
+        log.info("Logged in user: {}", principal.getName());
         return service.listEmployees(prefix);
     }
 
