@@ -28,6 +28,7 @@ public class Employee {
     // Relation field
     // Reverse side
     @OneToMany(mappedBy = "employee")
+//    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
     private List<Address> addresses;
 
     public void addAddress(Address address) {
