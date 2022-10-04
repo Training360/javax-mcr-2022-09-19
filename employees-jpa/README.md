@@ -28,3 +28,11 @@ pm.test("The name is Jack Doe", function () {
 ```shell
 docker run -d -p 3306:3306 -e MARIADB_DATABASE=employees -e MARIADB_USER=employees -e MARIADB_PASSWORD=employees -e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes --name my-mariadb mariadb 
 ```
+
+Ha az adatbázis elromlik:
+
+```shell
+docker stop my-mariadb 
+docker rm my-mariadb
+docker run -d -p 3306:3306 -e MARIADB_DATABASE=employees -e MARIADB_USER=employees -e MARIADB_PASSWORD=employees -e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes --name my-mariadb mariadb
+```
