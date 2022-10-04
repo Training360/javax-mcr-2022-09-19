@@ -10,4 +10,8 @@
         <sqlFile path="create-employee-table.sql"
                  relativeToChangelogFile="true" />
     </changeSet>
+    <changeSet id="create-addresses-table" author="trainer">
+        <sqlFile path="create-addresses-table.sql"
+                 relativeToChangelogFile="true" />
+    </changeSet>
 </databaseChangeLog>

@@ -1,0 +1,1 @@
+create table addresses (id bigint not null auto_increment, city varchar(255), line1 varchar(255), zip varchar(255), employee_id bigint, primary key (id));
