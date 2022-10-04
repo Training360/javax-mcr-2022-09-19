@@ -36,3 +36,9 @@ docker stop my-mariadb
 docker rm my-mariadb
 docker run -d -p 3306:3306 -e MARIADB_DATABASE=employees -e MARIADB_USER=employees -e MARIADB_PASSWORD=employees -e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes --name my-mariadb mariadb
 ```
+
+## Keycloak
+
+```shell
+docker run -e KEYCLOAK_USER=root -e KEYCLOAK_PASSWORD=root -p 8081:8080 --name keycloak jboss/keycloak
+```
