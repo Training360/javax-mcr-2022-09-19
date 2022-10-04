@@ -8,4 +8,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class GatewayProperties {
 
     private String url;
+
+    private String timeout = "PT5S";
+
+    private int threads = 5;
 }
