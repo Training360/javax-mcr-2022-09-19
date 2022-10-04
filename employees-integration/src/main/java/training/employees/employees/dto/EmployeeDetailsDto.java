@@ -2,6 +2,7 @@ package training.employees.employees.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import training.employees.employees.gateway.ExternalAddressDto;
 
 import java.time.LocalDateTime;
 
@@ -16,4 +17,6 @@ public class EmployeeDetailsDto {
     private int yearOfBirth;
 
     private LocalDateTime created;
+
+    private ExternalAddressDto address;
 }

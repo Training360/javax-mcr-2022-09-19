@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training.employees.employees.dto.*;
+import training.employees.employees.gateway.AddressesGateway;
 import training.employees.employees.repository.AddressesRepository;
 import training.employees.employees.repository.EmployeeNotFoundException;
 import training.employees.employees.repository.EmployeesRepository;
@@ -21,6 +22,8 @@ public class EmployeesService {
 
     private AddressesRepository addressesRepository;
 
+    private AddressesGateway addressesGateway;
+
     private EmployeeMapper employeeMapper;
 
     public List<EmployeeDto> listEmployees(Optional<String> prefix) {
@@ -35,9 +38,11 @@ public class EmployeesService {
     }
 
     public EmployeeDetailsDto findEmployeeById(long id) {
-        return employeeMapper.toDto(repository
+        var details = employeeMapper.toDto(repository
                 .findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id)));
+        details.setAddress(addressesGateway.getAddressToEmployee(details.getName()));
+        return details;
     }
 
     public EmployeeDetailsDto createEmployee(CreateEmployeeCommand command) {
