@@ -5,6 +5,7 @@ import org.mapstruct.MappingConstants;
 import training.employees.employees.dto.*;
 import training.employees.employees.entity.Address;
 import training.employees.employees.entity.Employee;
+import training.employees.employees.gateway.ExternalAddressDto;
 
 import java.util.List;
 
@@ -22,4 +23,10 @@ public interface EmployeeMapper {
     AddressDto toDto(Address address);
 
     List<AddressDto> toAddressDto(List<Address> address);
+
+    default SpecialAddressDto toSpecialAddressDto(ExternalAddressDto dto) {
+        var special = new SpecialAddressDto();
+        special.setValue(dto.getCity() + ", " + dto.getAddress());
+        return special;
+    }
 }

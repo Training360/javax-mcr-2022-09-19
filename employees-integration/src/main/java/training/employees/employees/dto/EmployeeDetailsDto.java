@@ -18,5 +18,5 @@ public class EmployeeDetailsDto {
 
     private LocalDateTime created;
 
-    private ExternalAddressDto address;
+    private SpecialAddressDto specialAddress;
 }

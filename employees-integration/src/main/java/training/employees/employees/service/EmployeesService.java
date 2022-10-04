@@ -41,7 +41,9 @@ public class EmployeesService {
         var details = employeeMapper.toDto(repository
                 .findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee not found with id: " + id)));
-        details.setAddress(addressesGateway.getAddressToEmployee(details.getName()));
+        details.setSpecialAddress(
+                employeeMapper.toSpecialAddressDto(addressesGateway.getAddressToEmployee(details.getName()))
+                );
         return details;
     }
 
