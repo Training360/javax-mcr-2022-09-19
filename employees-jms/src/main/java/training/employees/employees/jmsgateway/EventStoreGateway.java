@@ -14,17 +14,7 @@ public class EventStoreGateway {
     private JmsTemplate jmsTemplate;
 
     public void sendEvent(String message) {
-        var json = String.format("""
-                {
-                    "message": "%s"
-                }
-                """, message);
-
-        jmsTemplate.convertAndSend("eventsQueue", json, this::setHeader);
+        jmsTemplate.convertAndSend("eventsQueue", new MessageDto(message));
     }
 
-    public Message setHeader(Message message) throws JMSException {
-        message.setStringProperty("_typeId", "CreateEventCommand");
-        return message;
-    }
 }
