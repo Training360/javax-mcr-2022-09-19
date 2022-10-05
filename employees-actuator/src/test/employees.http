@@ -1,0 +1,55 @@
+### Lekérdezi az alkalmazottakat
+GET http://localhost:8080/api/employees
+
+### Lekérdezi az alkalmazottakat 
+GET http://localhost:8080/api/employees?prefix=s
+
+### Lekérdez egy alkalmazottat
+GET http://localhost:8080/api/employees/2
+
+### Alkalmazott létrehozása
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+    "name": "Stephen Doe",
+    "yearOfBirth": 1990
+}
+
+### Validációs szabály megsértése
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+    "name": "J",
+    "yearOfBirth": 1322
+}
+
+### Alkalmazott módosítása
+PUT http://localhost:8080/api/employees/2
+Content-Type: application/json
+
+{
+   "yearOfBirth": 1991 
+}
+
+### Alkalmazott törlése
+DELETE http://localhost:8080/api/employees/1
+
+### Cím létrehozása
+POST http://localhost:8080/api/employees/2/addresses
+Content-Type: application/json
+
+{
+    "zip": "1111",
+    "city": "Budapest",
+    "line1": "Fő út 30."
+}
+
+### Címek lekérdezése
+
+GET  http://localhost:8080/api/employees/2/addresses
+
+### Minden
+
+GET http://localhost:8080/api/employees/all
