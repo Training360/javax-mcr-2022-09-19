@@ -117,3 +117,18 @@ Content-Type: application/json
 {
     "configuredLevel": "INFO"
 }
+
+### Metrics
+
+GET http://localhost:8080/actuator/metrics
+
+###
+
+GET http://localhost:8080/actuator/metrics/http.server.requests
+
+###
+
+GET http://localhost:8080/actuator/metrics/employees.created
+
+###Prometheus
+GET http://localhost:8080/actuator/prometheus
