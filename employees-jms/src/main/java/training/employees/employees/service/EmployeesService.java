@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training.employees.employees.dto.*;
+import training.employees.employees.jmsgateway.EmployeeGateway;
 import training.employees.employees.jmsgateway.EventStoreGateway;
 import training.employees.employees.repository.AddressesRepository;
 import training.employees.employees.repository.EmployeeNotFoundException;
@@ -23,6 +24,8 @@ public class EmployeesService {
     private AddressesRepository addressesRepository;
 
     private EventStoreGateway gateway;
+
+    private EmployeeGateway employeeGateway;
 
     private EmployeeMapper employeeMapper;
 
@@ -48,6 +51,7 @@ public class EmployeesService {
         repository.save(employee);
 
         gateway.sendEvent(String.format("Employee has been created: %s", command.getName()));
+        employeeGateway.sendEvent(String.format("Employee has been created: %s", command.getName()));
 
         return employeeMapper.toDto(employee);
     }
