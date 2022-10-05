@@ -19,5 +19,10 @@
 
         </h:dataTable>
 
+        <h:form id="create-form">
+            <h:inputText value="#{employeesBackingBean.command.name}" id="name-input" />
+            <h:commandButton value="Create employee" action="#{employeesBackingBean.createEmployee}" id="create-button" />
+        </h:form>
+
     </h:body>
 </html>
