@@ -16,11 +16,11 @@ public class EventStoreGateway {
     public void sendEvent(String message) {
         var json = String.format("""
                 {
-                    "message": %s
+                    "message": "%s"
                 }
                 """, message);
 
-        jmsTemplate.convertAndSend(json, this::setHeader);
+        jmsTemplate.convertAndSend("eventsQueue", json, this::setHeader);
     }
 
     public Message setHeader(Message message) throws JMSException {
