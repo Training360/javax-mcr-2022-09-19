@@ -53,3 +53,45 @@ GET  http://localhost:8080/api/employees/2/addresses
 ### Minden
 
 GET http://localhost:8080/api/employees/all
+
+### Actuator
+GET http://localhost:8080/actuator
+
+### Health
+GET http://localhost:8080/actuator/health
+
+### Threads
+
+GET http://localhost:8080/actuator/threaddump
+
+###
+
+GET http://localhost:8080/actuator/beans
+
+###Cache
+
+GET http://localhost:8080/actuator/caches
+
+
+### Condition
+
+GET http://localhost:8080/actuator/conditions
+
+### Mappings
+
+GET http://localhost:8080/actuator/mappings
+
+### Config
+
+GET http://localhost:8080/actuator/configprops
+
+### Trace
+
+GET http://localhost:8080/actuator/httptrace
+
+### Liquibase
+
+GET http://localhost:8080/actuator/liquibase
+
+### Info
+GET http://localhost:8080/actuator/info
