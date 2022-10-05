@@ -53,3 +53,9 @@ GET  http://localhost:8080/api/employees/2/addresses
 ### Minden
 
 GET http://localhost:8080/api/employees/all
+
+### Token lekérése
+POST http://localhost:8081/auth/realms/EmployeesRealm/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=employees-app&username=johndoe&password=johndoe

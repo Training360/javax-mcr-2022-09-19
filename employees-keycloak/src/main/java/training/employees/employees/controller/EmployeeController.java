@@ -3,6 +3,8 @@ package training.employees.employees.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.keycloak.adapters.springsecurity.account.SimpleKeycloakAccount;
+import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,8 @@ public class EmployeeController {
             Principal principal) {
         log.info("List employees");
         log.debug("List employees with prefix {}", prefix);
+
+        log.info("Roles: {}", ((SimpleKeycloakAccount)(((KeycloakAuthenticationToken) principal).getDetails())).getRoles());
 
         log.info("Logged in user: {}", principal.getName());
         return service.listEmployees(prefix);

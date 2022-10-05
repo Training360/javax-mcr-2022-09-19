@@ -2,6 +2,7 @@ package training.employees.employees.service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import training.employees.employees.dto.*;
@@ -23,6 +24,7 @@ public class EmployeesService {
 
     private EmployeeMapper employeeMapper;
 
+    @PreAuthorize("hasRole('employees_app_user')")
     public List<EmployeeDto> listEmployees(Optional<String> prefix) {
         if (prefix.isEmpty()) {
 //            return employeeMapper.toDto(repository.findAll());
