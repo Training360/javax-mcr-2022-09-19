@@ -14,7 +14,7 @@ Klasszikus háromrétegű alkalmazás, MariaDB adatbázissal, Java Spring backen
 Követelmények tételesen:
 
 * SQL adatbázis kezelő réteg megvalósítása Spring Data JPA-val (`Repository`)
-* Flyway
+* Liquibase
 * Üzleti logika réteg megvalósítása `@Service` osztályokkal
 * Controller réteg megvalósítása, RESTful API implementálására.
 * Hibakezelés, validáció
