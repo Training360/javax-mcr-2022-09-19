@@ -6,5 +6,18 @@
 
     <h:body>
         <h1>Employees</h1>
+
+        <h:dataTable id="employees"
+                     value="#{employeesBackingBean.employees}"
+                     var="employee">
+            <h:column>
+                <h:outputText value="#{employee.id}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{employee.name}"/>
+            </h:column>
+
+        </h:dataTable>
+
     </h:body>
 </html>
