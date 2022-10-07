@@ -42,7 +42,8 @@ User adatai:
 
 ToDo adatai:
 
-* description (Long)
+* id (Long)
+* description (String)
 * deadline (LocalDate - határidő)
 * importance (Importance enum: URGENT, IMPORTANT, NON_URGENT; az elvégzendő tevékenység fontosságát jelöli)
 * status (Status enum: DONE, WORKING_ON_IT, NOT_STARTED)
